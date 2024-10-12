@@ -1,0 +1,57 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+}
+
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.11'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'io.freefair.lombok' version '6.6.3'
+	id 'org.bytedeco.gradle-javacpp-platform' version '1.5.6'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+  mavenCentral()
+	google()
+}
+
+bootJar {
+	archiveBaseName = 'airtable-service'
+}
+
+dependencies {
+	compileOnly('org.springframework.boot:spring-boot-starter-validation')
+	implementation('org.springframework.boot:spring-boot-starter')
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+
+	implementation('org.springframework.boot:spring-boot-starter-web')
+
+	implementation ("org.springdoc:springdoc-openapi-ui:1.7.0")
+	implementation ("org.openpnp:opencv:4.5.1-2")
+	implementation("org.javatuples:javatuples:1.2")
+
+	implementation ('com.sun.mail:jakarta.mail:2.0.1')
+	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation ("org.postgresql:postgresql:42.2.27")
+
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+	testImplementation 'org.mockito:mockito-core:5.3.1'
+	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation('junit:junit:4.13.2')
+}
+
+test {
+	useJUnitPlatform()
+}
+
+// Enable verbose output for debugging
+//logging.captureStandardOutput LogLevel.INFO
